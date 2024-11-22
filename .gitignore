@@ -1,0 +1,17 @@
+# node modules
+node_modules
+
+# compiled output
+dist
+
+# pnpm
+pnpm-lock.yaml
+
+# IDE
+.vscode
+
+# OS
+.DS_Store
+
+# env
+.env
