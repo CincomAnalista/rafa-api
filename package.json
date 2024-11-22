@@ -2,13 +2,11 @@
   "name": "rifa-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimaraf ./dist && tsc",
-    "dev": "nodemon src/app.js",
-    "start": "npm run build && node dist/app.js"
+    "dev": "nodemon src/app.js"
   },
   "keywords": [],
   "author": "",
