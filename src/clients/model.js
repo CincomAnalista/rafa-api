@@ -23,7 +23,7 @@ const ClientSchema = new mongoose.Schema({
         required: true,
     },
     lastUpdate: {
-        type: Date,
+        type: String,
         required: false,
     },
 })
