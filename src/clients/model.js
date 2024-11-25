@@ -22,6 +22,10 @@ const ClientSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    Numeros: {
+        type: Array,
+        require: true
+    },
     lastUpdate: {
         type: String,
         required: false,
