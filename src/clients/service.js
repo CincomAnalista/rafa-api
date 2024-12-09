@@ -126,7 +126,10 @@ function mergeClients(data) {
     const { Subtotal, Vendedor } = values;
     const Boletas = Math.floor(Subtotal / 4000000);
     const Falta_para_boleta = 4000000 - (Subtotal % 4000000);
-    const lastUpdate = new Date().toISOString().replace('T', ' ').slice(0, 19);
+    const lastUpdate = new Date().toLocaleString('es-CO', {
+      timeZone: 'America/Bogota',
+    }); 
+
     return {
       Vendedor,
       Cliente,
