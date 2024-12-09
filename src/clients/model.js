@@ -32,4 +32,16 @@ const ClientSchema = new mongoose.Schema({
     },
 })
 
+const numbersSchema = new mongoose.Schema({
+    Cliente: {
+        type: String,
+        required: true
+    },
+    Numeros: {
+        type: Array,
+        required: true
+    }
+})
+
 export const ClientModel = mongoose.model("clientes", ClientSchema);
+export const NumbersModel = mongoose.model("numeros", numbersSchema);

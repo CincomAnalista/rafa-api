@@ -4,6 +4,7 @@ import cors from 'cors'
 import morgan from 'morgan';
 import { connect } from './db/mongoConfig.js';
 import { config } from './config/index.js';
+import { scheduleTasks } from './tasks/index.js';
 
 //  Extract the PORT from the config object
 const { PORT } = config;
@@ -16,8 +17,8 @@ app.use(express.json());
 app.use(cors())
 app.use(morgan('dev'));
 
-// Database connection
-connect();
+connect();  // Database connection
+scheduleTasks(); // Schedule tasks
 
 // Routes
 app.use('/api', router);

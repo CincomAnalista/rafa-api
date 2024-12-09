@@ -3,7 +3,7 @@ import { ClientModel } from './model.js';
 export const getClient = (req, res) => {
   get()
     .then((result) => res.status(200).send(result))
-    .catch((error) => res.status(500));
+    .catch((error) => res.status(500).send(error));
 };
 
 export const getClientTime = (req, res) => {
