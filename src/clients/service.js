@@ -139,7 +139,5 @@ function mergeClients(data) {
       lastUpdate
     };
   });
-
-  console.log(result);
   return result;
 }
