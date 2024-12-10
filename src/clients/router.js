@@ -8,7 +8,7 @@ router.get("/", getClient);
 
 router.get("/time", getClientTime);
 
-router.get('/update', async (req, res) => {
+router.put('/', async (req, res) => {
     try {
         const result = await getClients();
         res.status(200).send(result);
