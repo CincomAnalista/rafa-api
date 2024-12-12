@@ -61,7 +61,7 @@ async function fetchMoveLines(moves) {
   return await odoo.accountModel.moveLines({
     ids: moveLineIds,
     price_subtotal: 0,
-    fields: ['product_id', 'price_subtotal']
+    fields: ['product_id', 'price_total']
   });
 }
 
@@ -85,7 +85,7 @@ function mergeData(moves, moveLines, products) {
       Vendedor: move.invoice_user_id[1],
       Cliente: move.invoice_partner_display_name,
       brand: product ? product.brand_id[1] : 'No brand',
-      Subtotal: line.price_subtotal
+      Subtotal: line.price_total
     };
   });
 
