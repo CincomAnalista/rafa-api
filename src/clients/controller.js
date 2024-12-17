@@ -1,4 +1,4 @@
-import { ClientModel } from './model.js';
+import { get, getTime } from './service.js';
 
 export const getClient = (req, res) => {
   get()
@@ -6,24 +6,15 @@ export const getClient = (req, res) => {
     .catch((error) => res.status(500).send(error));
 };
 
+export const getAllClients = async (req, res) => {
+  getAllClientsFromOdoo()
+  .then((result) => res.status(200).send(result))
+  .catch((error) => res.status(500).send(error))
+}
+
 export const getClientTime = (req, res) => {
   getTime()
     .then((result) => res.status(200).send(result))
     .catch((error) => res.status(500));
 };
 
-async function get() {
-  const result = await ClientModel.find({})
-    .then((result) => result)
-    .catch((error) => error);
-  return result;
-}
-
-async function getTime() {
-  const result = await ClientModel.find({})
-    .limit(1)
-    .sort({ lastUpdate: -1 })
-    .then((result) => result)
-    .catch((error) => error);
-  return result;
-}
