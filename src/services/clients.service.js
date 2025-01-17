@@ -36,8 +36,10 @@ async function fetchMoves() {
     state: 'posted', // publicado
     _payment_state: 'reversed', // no revertido
 
+    move_type: 'out_invoice',
+
     startDate: '2024-11-01', // fecha de inicio
-    endDate: '2024-12-31', // fecha de fin
+    endDate: '2025-01-31', // fecha de fin
 
     team: 'bog', // equipo
     personalized: [
@@ -81,13 +83,20 @@ function mergeData(moves, moveLines, products) {
     const move = moves.find((move) => move.line_ids.includes(line.id));
     const product = products.find((p) => p.id === line.product_id[0]);
 
+    if (!move || !product) {
+      console.warn(`Missing data for line id: ${line.id}`);
+      return null;
+    }
+
     return {
       Vendedor: move.invoice_user_id[1],
       Cliente: move.invoice_partner_display_name,
-      brand: product ? product.brand_id[1] : 'No brand',
-      Subtotal: line.price_total
+      brand: product.brand_id[1],
+      Subtotal: line.price_total,
+      name: move.name,
+      id_producto: product.product_variant_id[0],
     };
-  });
+  }).filter((m) => m !== null);
 
   return merge.filter((m) => m.brand === '3M');
 }
@@ -115,9 +124,11 @@ function mergeClients(data) {
   // Agrupar subtotales por Cliente
   const clientSubtotals = data.reduce((acc, item) => {
     if (!acc[item.Cliente]) {
-      acc[item.Cliente] = { Subtotal: 0, Vendedor: item.Vendedor };
+      acc[item.Cliente] = { Subtotal: 0, Vendedor: item.Vendedor, Facturas: [] };
     }
     acc[item.Cliente].Subtotal += item.Subtotal;
+    acc[item.Cliente].Facturas.push(item.name); // Agregar nombre de la factura
+    acc[item.Cliente].Cantidad = acc[item.Cliente].Facturas.length; // Agregar cantidad de facturas
     return acc;
   }, {});
 
@@ -139,5 +150,6 @@ function mergeClients(data) {
       lastUpdate
     };
   });
+
   return result;
 }

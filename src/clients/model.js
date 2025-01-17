@@ -32,13 +32,6 @@ const ClientSchema = new mongoose.Schema({
     },
 })
 
-const clientNameSchema = new mongoose.Schema({
-    Cliente: {
-        type: String,
-        required: true
-    },
-})
-
 const numbersSchema = new mongoose.Schema({
     Cliente: {
         type: String,
@@ -52,4 +45,3 @@ const numbersSchema = new mongoose.Schema({
 
 export const ClientModel = mongoose.model("clientes", ClientSchema);
 export const NumbersModel = mongoose.model("numeros", numbersSchema);
-export const ClientNameModel = mongoose.model("nombres", clientNameSchema);
